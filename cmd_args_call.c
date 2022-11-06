@@ -13,11 +13,15 @@ void check_if_file_exist(char **argv);
 /**************************************************************************************************/
 int main(int argc,char **argv)
 {   
- 
+   FILE *myfile;
    show_arguments_of_calling_the_program(argc,argv); // display on screen list of calling(invocation) arguments  of the program
    check_number_of_arguments(argc);                  // this function check if amount of agrumetns is correct
-   check_if_file_exist(argv);                        // open file in read only mode to check if file exist 
-   open_file_from_path(argc,argv);                   // open file in write mode. you can modify file using this function 
+   check_if_file_exist(argv);                        // open file in read only mode to check if file exist  
+   myfile = fopen(argv[1],"w");
+   printf("\nFile has been opened\n");
+   printf("\nHere will be some file operations :D\n");
+   fclose(myfile);
+   printf("\nThe file has been closed\n\n");                  // open file in write mode. you can modify file using this function 
     return 0;                                        // if everything is ok return 0
 }
 
@@ -45,16 +49,7 @@ void check_number_of_arguments(int argc)
     }
  else printf("\ncorrect number of arguments\n");
 }
-void open_file_from_path(int argc,char **argv)
-{
-    FILE *myfile;
-    myfile = fopen(argv[1],"w");
-    printf("\nFile has been opened\n");
-    printf("\nHere will be some file operations :D\n");
-    fclose(myfile);
-    printf("\nThe file has been closed\n\n");
 
-}
 void check_if_file_exist(char **argv)
 {  
         FILE *myfile;
