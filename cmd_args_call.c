@@ -7,17 +7,18 @@ void open_file_from_path(int argc,char **argv);
 void check_if_file_exist(char **argv);
 /**************************************************************************************************/
 //there is always at least one argument of calling because program itself  is considered an argument
+// Frist arg is paths to text file
+// second is phrase that you want to search and modify
+// third is phrase that will replace previously found phrase 
 /**************************************************************************************************/
 int main(int argc,char **argv)
 {   
  
-   show_arguments_of_calling_the_program(argc,argv);
-   check_number_of_arguments(argc);
-   check_if_file_exist(argv);
-   open_file_from_path(argc,argv);
-
- 
-    return 0;
+   show_arguments_of_calling_the_program(argc,argv); // display on screen list of calling(invocation) arguments  of the program
+   check_number_of_arguments(argc);                  // this function check if amount of agrumetns is correct
+   check_if_file_exist(argv);                        // open file in read only mode to check if file exist 
+   open_file_from_path(argc,argv);                   // open file in write mode. you can modify file using this function 
+    return 0;                                        // if everything is ok return 0
 }
 
 void show_arguments_of_calling_the_program(int argc,char **argv)
@@ -32,7 +33,7 @@ void show_arguments_of_calling_the_program(int argc,char **argv)
 }
 void check_number_of_arguments(int argc)
 {
- if(argc!=2)
+ if(argc!=4)
     {
      printf("\nIncorrect number of (ext) calling arguments\n");
      printf("expected number of  (ext) calling agrumetns is %d\n",number_of_expected_ext_args);
