@@ -104,8 +104,6 @@ void write_line_in_the_screen(char temp_line[255],char searched_phrase[255],unsi
     printf("%c[%dm" "%c[%dm",0x1B,RED,0x1B,1);
     printf("%c",temp_line[position_in_line]);
     printf("%c[%dm%c[%dm",0X1B,0,0X1B,22);
-    //printf("%c[%dm",0X1B,22);
-  //   printf("\b");  
   }
   printf("\n");
 }
