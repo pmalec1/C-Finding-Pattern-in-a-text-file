@@ -42,10 +42,8 @@ void copy_arguments_to_chars(char **argv, char searched_phrase[255],char path_to
 
 void read_line (char temp_line[255])
 {   
-
     int index_in_line = 0;
     char temp_char = '0';
-
     while((temp_char = fgetc(myfile)) != '\n' && temp_char != EOF)
    {  
       temp_line[index_in_line]=temp_char;
@@ -64,24 +62,23 @@ int analyse_data_from_from_line (char temp_line[255],char searched_phrase[255],u
       {   
        ++matching_letters;
         for(int iteration = 1; iteration<(int)strlen(searched_phrase);iteration++)
-        {   ++i;  
-            if(searched_phrase[iteration]==temp_line[i])++matching_letters;
-            else 
-            { matching_letters = 0;
-              break;
-            }
+        {   
+          ++i;    
+          if(searched_phrase[iteration]==temp_line[i])++matching_letters;
+          else 
+          { matching_letters = 0;
+            break;
+          }
         }
         if(matching_letters==(int)(strlen(searched_phrase)))
-        {  ++number_of_matches_in_line;
-            for(int i = 0; i < (int)strlen(searched_phrase); i++ ) printf("\b");          
+        {  ++number_of_matches_in_line;     
             aray_of_pattern_positions_in_line[number_of_matches_in_line] = i- (int)(strlen(searched_phrase))+1;
             matching_letters = 0;
-        
         }
       }
                 
     }
-   aray_of_pattern_positions_in_line[0]=number_of_matches_in_line;
+  aray_of_pattern_positions_in_line[0]=number_of_matches_in_line;
   return number_of_matches_in_line;  
 }
 
@@ -93,7 +90,7 @@ void write_line_in_the_screen(char temp_line[255],char searched_phrase[255],unsi
   {
     if(written_patterns<aray_of_pattern_positions_in_line[0])
     {
-    if(position_in_line == aray_of_pattern_positions_in_line[written_patterns+1])
+      if(position_in_line == aray_of_pattern_positions_in_line[written_patterns+1])
       {
         printf("\b%c[%dm %s",0x1B,BLUE,searched_phrase);
         printf("%c[%dm",0X1B,0);   
@@ -125,15 +122,11 @@ void show_line_statistics(unsigned short aray_of_pattern_positions_in_line[255],
    if(aray_of_pattern_positions_in_line[0]>0)
    {
     printf("patern_on_index:");
-   for(unsigned short int i=1; i<=aray_of_pattern_positions_in_line[0];++i)
-   {
-    printf("%d,",aray_of_pattern_positions_in_line[i]);
+      for(unsigned short int i=1; i<=aray_of_pattern_positions_in_line[0];++i)
+      {
+      printf("%d,",aray_of_pattern_positions_in_line[i]);
+      }
    }
-
-   }
-   else 
-   {
-    printf("NO PATTERN");
-   }
+   else printf("NO PATTERN");
    printf("\n");
 }
