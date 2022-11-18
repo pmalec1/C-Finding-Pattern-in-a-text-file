@@ -1,92 +1,83 @@
-# Malec_Piotr
 
+# Piotr Malec 318544
+## Oswiadczam ze praca zostala wykonana przeze mnie samodzielnie. 
 
+# TASK
+>TASK 
+>2- finding pattern in the text file
+# Project status 
+> COMPLETE :)
 
-## Getting started
+## About project 
+> This repository contains:
+> * The program that finds a pattern in a text
+> * Necessary libraries
+> * images that show how it works
+> * exemplary text file
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## User's guide
+> If you want to use this project you have to download this repository.
+>  * Next step is compile program files with f.ex gcc or clang
+>  *Examplary commands from terminal comand line:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+>>gcc your_program_name.c -o executive_file -Wall -Wextra 
 
-## Add your files
+>>./executive_file   path_to_existing_file.txt   phrase_to_find
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+> And now you can see program execution results
 
-```
-cd existing_repo
-git remote add origin https://gitlab-stud.elka.pw.edu.pl/pros_22z_16_18/p2/malec_piotr.git
-git branch -M main
-git push -uf origin main
-```
+## Variables used in the program
+char searched_phrase[255];      -- the search phrase is stored in this variable
 
-## Integrate with your tools
+char path_to_file[255];         -- Path pointing to your file is stored in this variable
 
-- [ ] [Set up project integrations](https://gitlab-stud.elka.pw.edu.pl/pros_22z_16_18/p2/malec_piotr/-/settings/integrations)
+char current_line[255];         -- Current line from text file is stored here
 
-## Collaborate with your team
+unsigned short aray_of_pattern_positions_in_line[255]; -- At index [0] is  amount of patterns found in the line, 
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+next indexes stored position of patters(frist letter)
 
-## Test and Deploy
+unsigned int  total_number_of_matches = 0;    --Number of matches from each lines of text file
 
-Use the built-in continuous integration in GitLab.
+unsigned short  matches_in_line = 0;          --Number of patterns in current line
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+char control_flag_EOF ='0';                   --this flag stored value of EOF.
 
-***
+unsigned int line_number = 1;                  -- number of current line 
 
-# Editing this README
+## Functions used in the program
+>Basics Functions from  <stdio.h> <stdlib.h  <string.h>
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+> Functions from my_new_lib.c
+>> void read_line (char temp_line[255]);                                                        --load chars from line in text file to the variable
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+>> void copy_arguments_to_chars(char **argv, char searched_phrase[255],char path_to_file[255]); --copy argument of calling to arrays of chars
 
-## Name
-Choose a self-explaining name for your project.
+>> void check_if_file_exist(char path_to_file[255]);                                            -- Open file in read only mode and check if file exist
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+>> void check_number_of_arguments(int number_of_calling_args);                                  --Check if number of (ext) calling arugments is correct
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+>> int analyse_data_from_from_line (char temp_line[255],char searched_phrase[255],unsigned short aray_of_pattern_positions_in_line[255])
+ 
+ Return number of matches from current line. Write into array amount of matches and positions of found patterns.
+>> void clear_current_line(char current_line[255]);                                             -- Clear buffor;
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+>> void write_line_in_the_screen(char temp_line[255],char searched_phrase[255],unsigned short aray_of_pattern_positions_in_line[255]);  
+--Display current line and highlight the searched phraze
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Rules
+>1. User have to call the program with two (EXTERNAL) arguments
+>2. Frist argument must be a path pointing to an existing file
+>3. File must be in txt format
+>4. Second argument is phrase you want to search for
+# How it works?
+* Step 1 Call the program with two correct arguments
+* Step 2 Program check if your file exist and show you a message about correcitivty of your args.
+* Step 3 Program analyze your text file line by line.The pattern will be found.  Its position will be saved. 
+Amount of patterns in the line will be saved.
+* Step 4 Each line will be displayed in the screen and found paterns will be highlighted.
+* Step 5 Total number of matches will be displayed and the end.
+### Examples of uses
+> Examples of uses are in directory called "EXAMPLES_OF_USE" in this repository
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+> There are some pictures that show how it works
