@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "my_new_lib.h"
-#include "my_new_lib.c"
+//#include "my_new_lib.c"
 /****************************************************************************************************************/
 //there is always at least one argument of calling(invocation) because program itself  is considered an argument*/
 /****************************************************************************************************************/
@@ -16,10 +16,27 @@ int main(int argc,char **argv)
    int matches_in_line = 0;
    char control_flag_EOF ='0';
    short line_number = 1;
-   check_number_of_arguments(argc);                            
+
+
+   if(check_number_of_arguments(argc)!=true)
+   {
+      printf("Incorrect number of arguments \n");
+      printf("Expected number of arguments(ext) is 2\n");
+   }                        
+   else
+   {
+      printf("Number of arguments is correct :D\n");
+   }    
    copy_arguments_to_chars(argv,searched_phrase,path_to_file); 
-   check_if_file_exist(path_to_file);                           
-   myfile = fopen(argv[1],"r");      
+   if(check_if_file_exists(path_to_file)==true)
+   {
+      printf("File exists :D\n");
+   }                 
+   else
+   {
+      printf("File doesn't exist\n");
+   }
+   myfile = fopen(argv[1],"r");
 
    printf("\n\t\t\tFile has been opened\n"); 
    printf("\n\n\t\tPatterns will be displayed in yellow\n\n");
@@ -30,8 +47,6 @@ int main(int argc,char **argv)
       read_line(current_line); 
       matches_in_line = analyse_data_from_from_line(current_line,searched_phrase,aray_of_pattern_positions_in_line); 
       show_line_statistics(aray_of_pattern_positions_in_line,line_number);
-      write_line_in_the_screen(current_line,searched_phrase,aray_of_pattern_positions_in_line);
-
       total_number_of_matches += matches_in_line;
       ++line_number;
    }
