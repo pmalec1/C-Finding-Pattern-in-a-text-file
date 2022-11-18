@@ -62,6 +62,8 @@ unsigned int line_number = 1;                  -- number of current line
  Return number of matches from current line. Write into array amount of matches and positions of found patterns.
 >> void clear_current_line(char current_line[255]);                                             -- Clear buffor;
 
+>>void show_line_statistics(unsigned short aray_of_pattern_positions_in_line[255],short line_number) --Show amount of patterns and their positions in current line
+
 >> void write_line_in_the_screen(char temp_line[255],char searched_phrase[255],unsigned short aray_of_pattern_positions_in_line[255]);  
 --Display current line and highlight the searched phraze
 
