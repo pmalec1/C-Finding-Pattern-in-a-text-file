@@ -2,8 +2,6 @@ FILE *myfile;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define  BLUE 93
-#define  RED 31
 #define true 1
 #define false 0
 #define NUMBER_OF_EXPECTED_EXT_ARGS 3
