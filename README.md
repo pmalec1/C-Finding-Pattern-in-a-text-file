@@ -20,9 +20,9 @@
 >  * Next step is compile program files with f.ex gcc or clang
 >  *Examplary commands from terminal comand line:
 
->>gcc your_program_name.c -o executive_file -Wall -Wextra 
+>>gcc your_program_name.c my_new_lib.c -Wall -Wextra 
 
->>./executive_file   path_to_existing_file.txt   phrase_to_find
+>>./a.out   exemplary_text_file.txt   phrase_to_find
 
 > And now you can see program execution results
 
