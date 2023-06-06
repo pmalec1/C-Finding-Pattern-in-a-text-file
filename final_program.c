@@ -17,29 +17,30 @@ int main(int argc,char **argv)
    char control_flag_EOF ='0';
    short line_number = 1;
 
-
-   if(check_number_of_arguments(argc)!=true)
+    if(check_number_of_arguments(argc)!=true)
    {
-      printf("Incorrect number of arguments \n");
-      printf("Expected number of arguments(ext) is 2\n");
+      printf("\t\tIncorrect number of arguments \n");
+      printf("\t\tExpected number of arguments(ext) is 2\n");
+      exit(1);
    }                        
    else
    {
-      printf("Number of arguments is correct :D\n");
+      printf("\t\tNumber of arguments is correct :D\n");
    }    
    copy_arguments_to_chars(argv,searched_phrase,path_to_file); 
    if(check_if_file_exists(path_to_file)==true)
    {
-      printf("File exists :D\n");
+      printf("\t\tFile exists :D\n");
    }                 
    else
    {
-      printf("File doesn't exist\n");
+      printf("\t\tFile doesn't exist\n");
+      exit(1);
    }
+   FILE *myfile;
    myfile = fopen(argv[1],"r");
 
-   printf("\n\t\t\tFile has been opened\n"); 
-   printf("\n\n\t\tPatterns will be displayed in yellow\n\n");
+   printf("\t\tFile has been opened\n\n"); 
    while((control_flag_EOF = fgetc(myfile)) != EOF )                                     
    {
       fseek(myfile, -1,1);      
@@ -52,8 +53,9 @@ int main(int argc,char **argv)
    }
 
    printf("\n\n\t\tTOTAL NUMBER OF MATCHES = %d\n\n",total_number_of_matches);    
-   printf("\n\t\tThe file has been closed\n\n");  \
+   printf("\t\tThe file has been closed\n\n");  \
 
    fclose(myfile);                                                         
    return 0;                                                               
 }
+
