@@ -1,5 +1,5 @@
 
-# Piotr Malec 318544
+# Piotr Malec 
 ## Oswiadczam ze praca zostala wykonana przeze mnie samodzielnie. 
 
 # TASK
